@@ -192,6 +192,7 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
   <nav class="filters" id="filters"></nav>
   <section id="list"></section>
   <p class="hint">Tap to check off · Swipe right to finish · Swipe left to delete<br>Hold a task to edit it or make it repeat · Daily tasks reset each morning</p>
+  <p class="hint" style="margin-top:14px"><b style="color:var(--fg)">To-Do now lives in the Planner app.</b><br><button id="cpBtn" style="margin-top:8px;padding:9px 14px;border-radius:12px;border:1px solid #2a2a34;background:#0f0f14;color:#c4b5fd;font-weight:700">Copy my tasks</button></p>
 </main>
 
 <div class="dock" id="dock"><div class="dock-in">
@@ -530,6 +531,11 @@ $('esave').onclick=()=>{
   closeEdit();
 };
 $('edel').onclick=()=>{if(!editing)return;const id=editing.id;closeEdit();removeTask(id,null)};
+
+/* ---------- move to Planner ---------- */
+$('cpBtn').onclick=async()=>{const txt=JSON.stringify({tasks:S.tasks});
+  try{await navigator.clipboard.writeText(txt);toast('Copied '+S.tasks.length+' tasks. Open Planner → To-Do → Bring tasks over')}
+  catch(e){prompt('Copy this, then paste it in Planner → To-Do → Bring tasks over:',txt)}};
 
 /* ---------- boot ---------- */
 $('date').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});

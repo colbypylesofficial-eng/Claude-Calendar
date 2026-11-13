@@ -1,11 +1,11 @@
 {
- "name": "Term Planner",
+ "name": "Planner",
  "short_name": "Planner",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
- "background_color": "#f3f5f8",
- "theme_color": "#0b7d74",
+ "background_color": "#000000",
+ "theme_color": "#000000",
  "icons": [
   {
    "src": "icon-192.png",
