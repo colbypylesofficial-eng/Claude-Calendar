@@ -26,8 +26,8 @@ img{max-width:100%}
   background:rgb(0 0 0/.82);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid #1f1f27}
 .tabs-in{position:relative;display:flex;max-width:520px;height:42px;margin:0 auto;padding:4px;border-radius:14px;background:#111118;border:1px solid #24242d}
 .tabs .ind{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:10px;
-  background:linear-gradient(135deg,#0b7d74,#4fd1c2);box-shadow:0 0 18px rgb(79 209 194/.35);transition:transform .35s cubic-bezier(.3,1.25,.5,1),background .35s,box-shadow .35s}
-body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(135deg,#a855f7,#6366f1 50%,#38bdf8);box-shadow:0 0 18px rgb(129 140 248/.45)}
+  background:linear-gradient(135deg,#2563eb,#60a5fa);box-shadow:0 0 18px rgb(59 130 246/.4);transition:transform .35s cubic-bezier(.3,1.25,.5,1),background .35s,box-shadow .35s}
+body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa);box-shadow:0 0 18px rgb(59 130 246/.45)}
 .tabs button{position:relative;z-index:1;flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border:0;background:none;color:#9b9ba8;
   font:600 14.5px "Inter",system-ui,-apple-system,sans-serif;cursor:pointer;border-radius:10px;transition:color .25s}
 .tabs button[aria-selected=true]{color:#fff}
@@ -202,7 +202,7 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 .todo{--bg:#000; --card:rgb(14 14 19/.72); --card-done:rgb(8 8 10/.62); --line:#1f1f27; --fg:#f5f5f7; --muted:#9b9ba8; --faint:#5d5d6a;
   --hot:#ff5c6c; --good:#22c55e;
   --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,sans-serif;
-  --c:#a855f7;
+  --c:#3b82f6;
   color-scheme:dark;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 .todo,.todo{margin:0;background:var(--bg);color:var(--fg)}
@@ -228,7 +228,7 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 .todo .hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:0 4px}
 .todo .date{margin:0 0 2px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .todo h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.02em;
-  background:linear-gradient(100deg,#fff 10%,#d8b4fe 45%,#7dd3fc 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  background:linear-gradient(100deg,#fff 10%,#93c5fd 45%,#7dd3fc 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .todo .sub{margin:8px 0 0;color:var(--muted);font-size:14px}
 .todo .sub b{color:var(--fg);font-weight:600}
 .todo .ring{position:relative;width:66px;height:66px;flex:none}
@@ -283,11 +283,11 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 .todo .is-done .meta{opacity:.55}
 .todo .empty{text-align:center;padding:60px 20px 20px;color:var(--muted)}
 .todo .empty .big{font-family:var(--display);font-weight:800;font-size:24px;color:var(--fg);margin-bottom:6px}
-.todo .empty .orb{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:conic-gradient(from 200deg,#a855f7,#38bdf8,#22c55e,#facc15,#fb7185,#a855f7);filter:blur(.3px);box-shadow:0 0 40px rgb(168 85 247/.35);display:grid;place-items:center}
+.todo .empty .orb{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:conic-gradient(from 200deg,#2563eb,#60a5fa,#93c5fd,#2563eb);filter:blur(.3px);box-shadow:0 0 40px rgb(59 130 246/.35);display:grid;place-items:center}
 .todo .empty .orb::after{content:"";width:70px;height:70px;border-radius:50%;background:#000}
 .todo .hint{text-align:center;color:var(--faint);font-size:12px;margin-top:26px;line-height:1.7}
 .todo .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:26px 0 calc(12px + env(safe-area-inset-bottom));
-  background:linear-gradient(to bottom,transparent,#000 34%)}
+  background:linear-gradient(to bottom,transparent,#07080b 34%)}
 .todo .dock-in{max-width:640px;margin:0 auto;padding:0 16px}
 .todo .opts{display:flex;gap:7px;overflow-x:auto;margin:0 -16px 10px;padding:0 16px;scrollbar-width:none}
 .todo .opt{position:relative;flex:none;display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#0b0b0f;color:var(--muted);font-size:13px;font-weight:600}
@@ -302,7 +302,7 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 .todo .bar input{flex:1;min-width:0;padding:11px 0;border:0;outline:0;background:none;color:var(--fg);font:500 16px var(--body)}
 .todo .bar input::placeholder{color:var(--faint)}
 .todo .add{flex:none;width:46px;height:46px;border-radius:16px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#a855f7,#6366f1 50%,#38bdf8);box-shadow:0 0 22px rgb(129 140 248/.45);transition:transform .15s}
+  background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa);box-shadow:0 0 22px rgb(59 130 246/.45);transition:transform .15s}
 .todo .add:active{transform:scale(.92)}
 .todo .add svg{width:22px;height:22px;stroke:#fff;stroke-width:2.8;stroke-linecap:round}
 .todo .scrim{position:fixed;inset:0;z-index:40;background:rgb(0 0 0/.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
@@ -318,28 +318,158 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 .todo .acts{display:flex;gap:10px;margin-top:22px}
 .todo .btn{flex:1;padding:14px;border-radius:14px;font-weight:700;font-size:15px}
 .todo .btn.del{flex:none;padding:14px 18px;color:#ff7b88;background:rgb(244 63 94/.12);border:1px solid rgb(244 63 94/.3)}
-.todo .btn.save{color:#fff;background:linear-gradient(135deg,#a855f7,#6366f1 50%,#38bdf8)}
-.todo .rep{display:flex;align-items:center;gap:4px;color:#c4b5fd;font-weight:500}
+.todo .btn.save{color:#fff;background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa)}
+.todo .rep{display:flex;align-items:center;gap:4px;color:#93c5fd;font-weight:500}
 .todo .streak{color:#fdba74;font-weight:700}
-.todo .gh.daily{color:#c4b5fd}
+.todo .gh.daily{color:#93c5fd}
 .todo .gh svg{width:13px;height:13px}
 .todo .row.off{opacity:.42}
 .todo .row.off .chk{border-style:dashed}
-.todo .opt.rp{--c:#a78bfa}
+.todo .opt.rp{--c:#60a5fa}
 .todo .opt.rp svg{flex:none}
 .todo .days{margin-top:8px}
-.todo .opt.day{width:38px;height:38px;padding:0;justify-content:center;--c:#a78bfa}
+.todo .opt.day{width:38px;height:38px;padding:0;justify-content:center;--c:#60a5fa}
 .todo .toast{position:fixed;left:50%;bottom:calc(150px + env(safe-area-inset-bottom));z-index:30;display:flex;align-items:center;gap:16px;padding:11px 12px 11px 18px;border-radius:14px;background:#1a1a22;border:1px solid #2c2c37;box-shadow:0 10px 30px rgb(0 0 0/.6);font-size:14px;
   transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.25s}
 .todo .toast.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
-.todo .toast button{color:#c4b5fd;font-weight:700;padding:4px 8px}
+.todo .toast button{color:#93c5fd;font-weight:700;padding:4px 8px}
 .todo .imp{margin-top:10px;color:var(--muted);font-size:12px;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- money ---------- */
+.money{--card:rgb(17 20 27/.78);--line:#222733;--fg:#f2f4f8;--muted:#9aa3b5;--faint:#667085;--blue:#3b82f6;--blue2:#60a5fa;--hot:#ff6b6b;--good:#34d399;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,-apple-system,sans-serif;
+  color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased;color-scheme:dark;min-height:100vh}
+.money *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+.money button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.money main{position:relative;max-width:640px;margin:0 auto;padding:calc(var(--tabh) + 18px) 16px 130px}
+.money .hd{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:0 4px}
+.money .mnav{display:flex;align-items:center;gap:6px;margin:0 0 2px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.money .mnav button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);color:var(--muted);font-size:15px;line-height:1}
+.money h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.02em;background:linear-gradient(100deg,#fff 10%,#93c5fd 55%,#3b82f6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.money .pbtn{padding:9px 14px;border-radius:12px;border:1px solid #2a3040;background:#0f1218;color:var(--blue2);font-weight:700;font-size:13.5px}
+.money .card{margin-top:14px;padding:16px;border-radius:20px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.money .lbl{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.money .hero{position:relative;overflow:hidden;border-color:#27406e;background:linear-gradient(150deg,rgb(37 99 235/.22),rgb(17 20 27/.8) 65%)}
+.money .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle closest-side,rgb(96 165 250/.35),transparent);animation:mglow 4.5s ease-in-out infinite alternate;pointer-events:none}
+@keyframes mglow{from{transform:scale(.8);opacity:.5}to{transform:scale(1.2);opacity:1}}
+.money .big{font-family:var(--display);font-weight:800;font-size:52px;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.money .big.neg{color:var(--hot)}
+.money .hsub{color:var(--muted);font-size:13.5px}
+.money .track{position:relative;height:10px;border-radius:99px;background:#1a1f2b;margin-top:14px}
+.money .track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#60a5fa);box-shadow:0 0 14px rgb(59 130 246/.55);transition:width .8s cubic-bezier(.2,.9,.3,1)}
+.money .track.over i{background:linear-gradient(90deg,#e5484d,#ff8b8b);box-shadow:0 0 14px rgb(255 107 107/.45)}
+.money .track u{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:2px;background:#fff;opacity:.85}
+.money .pace{display:flex;justify-content:space-between;gap:8px;margin-top:9px;font-size:12.5px;color:var(--muted)}
+.money .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:99px;font-weight:700;font-size:12px;background:rgb(59 130 246/.16);color:var(--blue2)}
+.money .pill.bad{background:rgb(255 107 107/.14);color:var(--hot)}
+.money .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.money .tile{padding:13px 12px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.money .tile b{display:block;font-family:var(--display);font-weight:800;font-size:21px;font-variant-numeric:tabular-nums;margin:4px 0 1px}
+.money .tile small{font-size:11.5px;color:var(--faint)}
+.money .tile .lbl{font-size:10.5px}
+.money .donut{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;margin-top:12px}
+.money .dwrap{position:relative;width:150px;height:150px}
+.money .dwrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.money .dwrap circle{fill:none;stroke-width:13;transition:opacity .2s,stroke-width .2s;cursor:pointer}
+.money .dwrap.foc circle:not(.on){opacity:.25}
+.money .dwrap circle.on{stroke-width:16}
+.money .dmid{position:absolute;inset:0;display:grid;place-content:center;text-align:center;pointer-events:none}
+.money .dmid b{font-family:var(--display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums}
+.money .dmid span{font-size:11.5px;color:var(--muted)}
+.money .leg{display:flex;flex-direction:column;gap:2px;min-width:0}
+.money .leg button{display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:8px;font-size:13px;text-align:left;width:100%}
+.money .leg button.on{background:#1a2030}
+.money .leg i{flex:none;width:9px;height:9px;border-radius:3px;background:var(--c)}
+.money .leg span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.money .leg em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+.money .cmp{margin-top:12px;display:flex;flex-direction:column;gap:13px}
+.money .cr{display:grid;gap:5px}
+.money .cr .t{display:flex;justify-content:space-between;gap:10px;font-size:13.5px}
+.money .cr .t span{display:flex;align-items:center;gap:8px;font-weight:600}
+.money .cr .t i{width:9px;height:9px;border-radius:3px;background:var(--c)}
+.money .cr .t em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+.money .cr .t em b{color:var(--fg)}
+.money .cr.over .t em b{color:var(--hot)}
+.money .cbar{height:7px;border-radius:99px;background:#1a1f2b;overflow:hidden}
+.money .cbar i{display:block;height:100%;border-radius:99px;background:var(--c);transition:width .8s cubic-bezier(.2,.9,.3,1)}
+.money .cr.over .cbar i{background:var(--hot)}
+.money .tx{display:flex;align-items:center;gap:12px;width:100%;padding:11px 2px;border-bottom:1px solid #1a1e28;text-align:left}
+.money .tx:last-child{border-bottom:0}
+.money .tx i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+.money .tx span{flex:1;min-width:0}
+.money .tx span b{display:block;font-weight:600;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.money .tx span small{color:var(--muted);font-size:12px}
+.money .tx em{font-style:normal;font-weight:700;font-variant-numeric:tabular-nums}
+.money .tx em.in{color:var(--good)}
+.money .empty{color:var(--muted);font-size:14px;padding:10px 0 2px}
+.money .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.money .abtn{padding:14px 10px;border-radius:16px;font-weight:700;font-size:14px;border:1px solid #2a3040;background:#0f1218;color:var(--fg)}
+.money .abtn.pri{border:0;color:#fff;background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa);box-shadow:0 0 22px rgb(59 130 246/.4)}
+.money .abtn:active,.money .fab:active{transform:scale(.96)}
+.money .nudge{display:flex;align-items:center;gap:12px;border-color:#27406e}
+.money .nudge .dotp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--blue2);animation:mping 1.8s ease-out infinite}
+@keyframes mping{0%{box-shadow:0 0 0 0 rgb(96 165 250/.6)}100%{box-shadow:0 0 0 12px rgb(96 165 250/0)}}
+.money .nudge p{margin:0;font-size:13.5px;color:var(--muted)}
+.money .nudge p b{color:var(--fg);display:block}
+.money .hint{text-align:center;color:var(--faint);font-size:12px;margin-top:22px;line-height:1.7}
+.money .fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;padding:14px 20px;border-radius:16px;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa);box-shadow:0 8px 26px rgb(37 99 235/.5);transition:transform .15s}
+.money .scrim{position:fixed;inset:0;z-index:60;background:rgb(0 0 0/.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.money .scrim.open{opacity:1;pointer-events:auto}
+.money .sheet{width:100%;max-width:640px;max-height:88vh;overflow:auto;background:#0d1016;border:1px solid #242a38;border-bottom:0;border-radius:26px 26px 0 0;padding:12px 18px calc(18px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.money .scrim.open .sheet{transform:none}
+.money .grab{width:40px;height:5px;border-radius:3px;background:#2c3342;margin:0 auto 14px}
+.money .sheet h2{margin:0 0 4px;font-family:var(--display);font-size:22px}
+.money .sheet p.s{margin:0 0 6px;color:var(--muted);font-size:13px}
+.money .sheet .lbl{margin:16px 0 7px}
+.money .sheet input{width:100%;padding:12px 13px;border-radius:13px;border:1px solid #2a3040;background:#07080b;color:var(--fg);font:500 16px var(--body);outline:0}
+.money .sheet input:focus{border-color:var(--blue)}
+.money .amt{font:800 34px var(--display)!important;text-align:center;padding:14px!important}
+.money .wrap{display:flex;flex-wrap:wrap;gap:7px}
+.money .opt{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#0b0d12;color:var(--muted);font-size:13px;font-weight:600}
+.money .opt i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--blue))}
+.money .opt.on{color:#fff;border-color:var(--c,var(--blue));background:color-mix(in srgb,var(--c,var(--blue)) 18%,#000)}
+.money .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.money .two label,.money .one label{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.money .two label input,.money .one label input{margin-top:5px}
+.money .calc{margin-top:8px;font-size:13px;color:var(--blue2)}
+.money .sacts{display:flex;gap:10px;margin-top:22px}
+.money .btn{flex:1;padding:14px;border-radius:14px;font-weight:700;font-size:15px}
+.money .btn.del{flex:none;padding:14px 18px;color:#ff8b8b;background:rgb(255 107 107/.12);border:1px solid rgb(255 107 107/.3)}
+.money .btn.save{color:#fff;background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa)}
+.money .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));z-index:70;padding:11px 18px;border-radius:14px;background:#1a1f2b;border:1px solid #2c3445;box-shadow:0 10px 30px rgb(0 0 0/.6);font-size:14px;max-width:calc(100vw - 32px);text-align:center;transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.25s}
+.money .toast.show{transform:translate(-50%,0);opacity:1}
+@media (prefers-reduced-motion:no-preference){.money .rise>*{animation:mrise .45s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--i,0)*45ms)}@keyframes mrise{from{opacity:.001;transform:translateY(12px)}}
+  .money .dwrap svg{animation:mspin .8s cubic-bezier(.2,.9,.3,1)}@keyframes mspin{from{transform:rotate(-200deg) scale(.8);opacity:0}}}
+@media (prefers-reduced-motion:reduce){.money .hero::after,.money .nudge .dotp{animation:none}}
+
+/* ---------- one look for all three: dark gray/black, blue accent, pulsing light ---------- */
+html{background:#07080b}
+body,body.on-cal,body.on-todo,body.on-money{background:transparent}
+.amb{position:fixed;inset:-15%;z-index:-1;pointer-events:none;overflow:hidden;transform:translate3d(var(--px,0px),var(--py,0px),0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.amb i{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);margin:calc(var(--s)/-2);border-radius:50%;background:radial-gradient(circle closest-side,var(--col),transparent);animation:ambpulse var(--t) ease-in-out var(--d) infinite alternate;will-change:transform,opacity}
+@keyframes ambpulse{from{transform:translateY(9vh) scale(.72);opacity:.3}to{transform:translateY(-9vh) scale(1.18);opacity:1}}
+@media (prefers-reduced-motion:reduce){.amb i{animation:none}.amb{transition:none}}
+.app.cal,.app.todo{background:transparent}
+.app.cal{--bg:#07080b;--surface:#11141b;--raise:#171b24;--sunk:#161a23;--fg:#f2f4f8;--muted:#9aa3b5;--faint:#667085;--line:#222733;--accent:#3b82f6;--accent-fg:#fff;--hot:#ff6b6b;
+  --c-bio:#3fd0c1;--c-phy:#8ea2ff;--c-lab:#c39bff;--c-he:#6cd98a;--c-ta:#ffb44f;--c-hosp:#ff7b7b;--c-mcat:#aab6cc;--c-me:#60a5fa;
+  --shadow:0 1px 2px rgb(0 0 0/.4),0 8px 22px rgb(0 0 0/.35);color-scheme:dark}
+.app.cal .eyebrow{color:#60a5fa}
+.app.cal .fab{background:linear-gradient(135deg,#2563eb,#3b82f6 55%,#60a5fa);border:0}
+.app.todo{--bg:#07080b;--line:#222733;--card:rgb(17 20 27/.78)}
+.tabs{background:rgb(7 8 11/.8);border-bottom-color:#1c2130}
+.tabs-in{background:#10131a;border-color:#222733}
+.tabs .ind,body.on-todo .tabs .ind,body.on-money .tabs .ind{width:calc((100% - 8px)/3);background:linear-gradient(135deg,#2563eb,#60a5fa);box-shadow:0 0 18px rgb(59 130 246/.45)}
+body.on-todo .tabs .ind{transform:translateX(100%)}
+body.on-money .tabs .ind{transform:translateX(200%)}
+.tabs button{font-size:14px;gap:6px}
 </style>
 </head>
 <body class="on-cal">
+<div class="amb" id="bg" aria-hidden="true"><i style="--x:18%;--y:16%;--s:62vmax;--col:rgb(37 99 235/.5);--t:7s;--d:-0s"></i><i style="--x:84%;--y:30%;--s:50vmax;--col:rgb(59 130 246/.38);--t:9s;--d:-3s"></i><i style="--x:50%;--y:58%;--s:44vmax;--col:rgb(14 165 233/.26);--t:6s;--d:-1.5s"></i><i style="--x:12%;--y:80%;--s:54vmax;--col:rgb(29 78 216/.46);--t:8s;--d:-5s"></i><i style="--x:88%;--y:88%;--s:46vmax;--col:rgb(96 165 250/.3);--t:10s;--d:-2s"></i></div>
 <nav class="tabs" role="tablist" aria-label="Switch app"><div class="tabs-in"><span class="ind"></span>
   <button role="tab" id="tab-cal" aria-controls="calApp" aria-selected="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>Calendar</button>
   <button role="tab" id="tab-todo" aria-controls="todoApp" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M3.5 6l1.2 1.2L7 5M3.5 12l1.2 1.2L7 11M3.5 18l1.2 1.2L7 17"/></svg>To-Do<span class="badge" id="todoBadge"></span></button>
+  <button role="tab" id="tab-money" aria-controls="moneyApp" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3v18M16.5 7.5c-.8-1.2-2.4-2-4.500-2-2.500 0-4 1.300-4 3 0 4.200 9 2 9 6.500 0 1.800-1.800 3.200-4.500 3.200-2.400 0-4.200-1-5-2.500"/></svg>Money</button>
 </div></nav>
 
 <div class="app cal" id="calApp" role="tabpanel" aria-labelledby="tab-cal">
@@ -357,15 +487,8 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
 </div>
 
 <div class="app todo" id="todoApp" role="tabpanel" aria-labelledby="tab-todo" hidden>
-<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a855f7"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs></svg>
 
-<div class="bg" id="bg" aria-hidden="true">
-  <div class="stars"></div>
-  <div class="orbit" style="--x:22%;--y:18%;--t:36s"><div class="orb" style="--s:75vmax;--r:16vmax;--col:rgb(147 51 234/.55);--b:11s"></div></div>
-  <div class="orbit rev" style="--x:78%;--y:26%;--t:44s"><div class="orb" style="--s:62vmax;--r:20vmax;--col:rgb(14 165 233/.42);--b:9s"></div></div>
-  <div class="orbit" style="--x:50%;--y:82%;--t:52s"><div class="orb" style="--s:60vmax;--r:18vmax;--col:rgb(236 72 153/.32);--b:13s"></div></div>
-  <div class="orbit rev" style="--x:35%;--y:58%;--t:64s"><div class="orb" style="--s:48vmax;--r:24vmax;--col:rgb(34 197 94/.2);--b:12s"></div></div>
-</div>
 <main>
   <div class="hd">
     <div>
@@ -381,7 +504,6 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
   <nav class="filters" id="filters"></nav>
   <section id="list"></section>
   <p class="hint">Tap to check off · Swipe right to finish · Swipe left to delete<br>Hold a task to edit it or make it repeat · Daily tasks reset each morning<br><button class="imp" id="impBtn">Bring tasks over from the old To-Do app</button></p>
-  <p class="hint" style="margin-top:14px"><b style="color:var(--fg)">To-Do now lives in the Planner app.</b><br><button id="cpBtn" style="margin-top:8px;padding:9px 14px;border-radius:12px;border:1px solid #2a2a34;background:#0f0f14;color:#c4b5fd;font-weight:700">Copy my tasks</button></p>
 </main>
 
 <div class="dock" id="dock"><div class="dock-in">
@@ -412,6 +534,23 @@ body.on-todo .tabs .ind{transform:translateX(100%);background:linear-gradient(13
     </div>
   </div>
 </div>
+</div>
+
+<div class="app money" id="moneyApp" role="tabpanel" aria-labelledby="tab-money" hidden>
+<main>
+  <div class="hd">
+    <div>
+      <p class="mnav"><button id="mPrev" aria-label="Previous month">‹</button><span id="mMonth"></span><button id="mNext" aria-label="Next month">›</button></p>
+      <h1>Money</h1>
+    </div>
+    <button class="pbtn" id="mPlanBtn">Edit plan</button>
+  </div>
+  <div id="mBody"></div>
+  <p class="hint">Tap a slice or category to focus it · Tap an entry to edit it<br>Everything is saved on this phone</p>
+</main>
+<button class="fab" id="mAdd">+ Add</button>
+<div class="scrim" id="mScrim"><div class="sheet" id="mSheet"></div></div>
+<div class="toast" id="mToast" role="status"></div>
 </div>
 
 <script>
@@ -683,7 +822,7 @@ header();chips();paint();
 const CATS=[
   {k:'school',  n:'School',  c:'#38bdf8'},
   {k:'work',    n:'Work',    c:'#fb7185'},
-  {k:'personal',n:'Personal',c:'#c084fc'},
+  {k:'personal',n:'Personal',c:'#818cf8'},
   {k:'mcat',    n:'MCAT',    c:'#facc15'},
   {k:'errands', n:'Errands', c:'#fb923c'},
   {k:'health',  n:'Health',  c:'#34d399'}
@@ -987,11 +1126,6 @@ $('esave').onclick=()=>{
 };
 $('edel').onclick=()=>{if(!editing)return;const id=editing.id;closeEdit();removeTask(id,null)};
 
-/* ---------- move to Planner ---------- */
-$('cpBtn').onclick=async()=>{const txt=JSON.stringify({tasks:S.tasks});
-  try{await navigator.clipboard.writeText(txt);toast('Copied '+S.tasks.length+' tasks. Open Planner → To-Do → Bring tasks over')}
-  catch(e){prompt('Copy this, then paste it in Planner → To-Do → Bring tasks over:',txt)}};
-
 /* ---------- boot ---------- */
 $('date').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
 render(); renderOpts();
@@ -1012,9 +1146,192 @@ $('impBtn').onclick=async()=>{
 })();
 </script>
 <script>
+/* ===== Money ===== */
+(()=>{
+const KEY='colby.money.v1',$=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CATS=[['gas','Gas','#3987e5'],['groceries','Groceries','#d95926'],['eating','Eating out','#199e70'],['tuition','Tuition','#c98500'],['shopping','Shopping','#d55181'],['subs','Subscriptions','#008300'],['fun','Fun','#9085e9'],['other','Other','#e66767']];
+const CAT=Object.fromEntries(CATS.map(c=>[c[0],{n:c[1],c:c[2]}]));
+const FIXED=new Set(['tuition','subs']);
+const DEF={plan:{wage:0,hours:48,per:'bi',tax:0,price:0,mpg:23.5,wk:290,mo:720,b:{groceries:0,eating:0,tuition:150,shopping:0,subs:0,fun:0,other:0}},tx:[],lastSent:null};
+let S=JSON.parse(JSON.stringify(DEF));
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.plan){S={...S,...s,plan:{...S.plan,...s.plan,b:{...S.plan.b,...(s.plan.b||{})}}};if(!Array.isArray(S.tx))S.tx=[]}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const NOW=()=>new Date();
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const M=(n,c)=>(n<0?'−':'')+'$'+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:c?2:0,maximumFractionDigits:c?2:0});
+const sum=a=>a.reduce((s,t)=>s+(+t.a||0),0);
+const PER={wk:52/12,bi:26/12,semi:2,mo:1};
+let cur={y:NOW().getFullYear(),m:NOW().getMonth()},focus=null;
+
+const gasMiles=()=>S.plan.wk*52/12+S.plan.mo;
+const gasBudget=()=>S.plan.price>0&&S.plan.mpg>0?gasMiles()/S.plan.mpg*S.plan.price:0;
+const budget=c=>c==='gas'?gasBudget():(+S.plan.b[c]||0);
+const planIncome=()=>S.plan.wage*S.plan.hours*PER[S.plan.per]*(1-S.plan.tax/100);
+const planSpend=()=>CATS.reduce((s,c)=>s+budget(c[0]),0);
+
+function calc(){
+  const mk=cur.y+'-'+String(cur.m+1).padStart(2,'0'),n=NOW();
+  const tx=S.tx.filter(t=>t.d&&t.d.startsWith(mk)).sort((a,b)=>a.d<b.d?1:a.d>b.d?-1:0);
+  const exp=tx.filter(t=>t.t!=='inc'),inc=tx.filter(t=>t.t==='inc'),by={};
+  exp.forEach(t=>by[t.c]=(by[t.c]||0)+(+t.a||0));
+  const days=new Date(cur.y,cur.m+1,0).getDate(),isCur=n.getFullYear()===cur.y&&n.getMonth()===cur.m;
+  const past=new Date(cur.y,cur.m+1,1)<=n,day=isCur?n.getDate():past?days:0;
+  const spent=sum(exp),income=sum(inc);
+  let proj=spent;
+  if(isCur)proj=CATS.reduce((s,[k])=>{const a=by[k]||0;return s+(FIXED.has(k)?Math.max(a,budget(k)):a/day*days)},0);
+  const pInc=planIncome(),pSp=planSpend(),expInc=isCur?Math.max(income,pInc):income;
+  return{mk,tx,by,days,day,isCur,past,spent,income,proj,pInc,pSp,projSave:expInc-proj,planSave:pInc-pSp};
+}
+function donut(d){
+  const parts=CATS.filter(([k])=>d.by[k]>0).map(([k])=>({k,v:d.by[k]}));
+  if(!parts.length)return'';
+  const R=42,C=2*Math.PI*R,gap=parts.length>1?2.5:0;let off=0,segs='';
+  parts.forEach(p=>{const len=p.v/d.spent*C;
+    segs+=`<circle class="${focus===p.k?'on':''}" data-foc="${p.k}" cx="60" cy="60" r="${R}" stroke="${CAT[p.k].c}" stroke-dasharray="${Math.max(.5,len-gap)} ${C}" stroke-dashoffset="${-off}"><title>${CAT[p.k].n}: ${M(p.v,1)}</title></circle>`;off+=len});
+  const f=focus&&d.by[focus]?focus:null;
+  return `<div class="card"><p class="lbl">Where it went</p><div class="donut"><div class="dwrap ${f?'foc':''}"><svg viewBox="0 0 120 120" role="img" aria-label="Spending by category">${segs}</svg>
+    <div class="dmid"><div><b>${M(f?d.by[f]:d.spent)}</b><br><span>${f?CAT[f].n+' · '+Math.round(d.by[f]/d.spent*100)+'%':'spent'}</span></div></div></div>
+    <div class="leg">${parts.map(p=>`<button data-foc="${p.k}" class="${f===p.k?'on':''}" style="--c:${CAT[p.k].c}"><i></i><span>${CAT[p.k].n}</span><em>${Math.round(p.v/d.spent*100)}%</em></button>`).join('')}</div></div></div>`;
+}
+function render(anim){
+  const d=calc(),n=NOW();
+  $('mMonth').textContent=new Date(cur.y,cur.m,1).toLocaleDateString(undefined,{month:'long',year:'numeric'});
+  const hasPlan=d.pInc>0||CATS.some(([k])=>k!=='tuition'&&budget(k)>0);
+  let h='';
+  const due=!S.lastSent||(Date.now()-S.lastSent)>6.5*864e5;
+  if(due&&hasPlan&&d.isCur)h+=`<div class="card nudge"><span class="dotp"></span><p><b>Weekly check-in</b>Send this week's numbers to Claude to compare against your plan.</p></div>`;
+  if(!hasPlan)h+=`<div class="card hero"><p class="lbl">Start here</p><div class="big" style="font-size:30px">Set up your plan</div><p class="hsub">Add your hourly pay, the Costco gas price and a monthly budget for each category. Everything below compares what you actually spend against it.</p><div class="acts" style="grid-template-columns:1fr"><button class="abtn pri" data-act="plan">Set up plan</button></div></div>`;
+  else{
+    const left=d.pSp-d.spent,pct=d.pSp?Math.min(100,d.spent/d.pSp*100):0,should=d.pSp*d.day/d.days,ahead=d.spent-should;
+    h+=`<div class="card hero"><p class="lbl">${left>=0?'Left to spend':'Over budget'}${d.isCur?' this month':''}</p><div class="big ${left<0?'neg':''}" data-n="${Math.abs(left)}">${M(Math.abs(left))}</div>
+      <div class="hsub">Spent <b style="color:var(--fg)">${M(d.spent)}</b> of ${M(d.pSp)} planned</div>
+      <div class="track ${left<0?'over':''}"><i style="width:${anim?0:pct}%" data-w="${pct}"></i>${d.isCur?`<u style="left:${d.day/d.days*100}%" title="Today"></u>`:''}</div>
+      <div class="pace">${d.isCur?`<span>Day ${d.day} of ${d.days} · white line is today</span><span class="pill ${ahead>should*.05+1?'bad':''}">${ahead>should*.05+1?M(ahead)+' ahead of pace':'On pace'}</span>`:`<span>${d.past?'Month finished':'Not started yet'}</span>`}</div></div>`;
+    h+=`<div class="tiles"><div class="tile"><p class="lbl">Income</p><b data-n="${d.income}">${M(d.income)}</b><small>plan ${M(d.pInc)}</small></div>
+      <div class="tile"><p class="lbl">${d.isCur?'Projected spend':'Spent'}</p><b data-n="${d.proj}" style="${d.proj>d.pSp+1?'color:var(--hot)':''}">${M(d.proj)}</b><small>plan ${M(d.pSp)}</small></div>
+      <div class="tile"><p class="lbl">${d.isCur?'Projected saved':'Saved'}</p><b data-n="${Math.abs(d.projSave)}" style="${d.projSave<0?'color:var(--hot)':''}">${M(d.projSave)}</b><small>plan ${M(d.planSave)}</small></div></div>`;
+  }
+  h+=donut(d);
+  const rows=CATS.filter(([k])=>budget(k)>0||d.by[k]>0);
+  if(rows.length&&hasPlan)h+=`<div class="card"><p class="lbl">Plan vs. actual</p><div class="cmp">${rows.map(([k])=>{const a=d.by[k]||0,b=budget(k),w=b?Math.min(100,a/b*100):100;
+    return `<div class="cr ${a>b+.005?'over':''}" style="--c:${CAT[k].c}"><div class="t"><span><i></i>${CAT[k].n}</span><em><b>${M(a)}</b> / ${b?M(b):'no budget'}</em></div><div class="cbar"><i style="width:${anim?0:w}%" data-w="${w}"></i></div></div>`}).join('')}</div></div>`;
+  h+=`<div class="card"><p class="lbl">Entries${d.tx.length?' · '+d.tx.length:''}</p>${d.tx.length?d.tx.map(t=>{const inc=t.t==='inc',c=inc?'#34d399':(CAT[t.c]||CAT.other).c,nm=inc?'Paycheck':(CAT[t.c]||CAT.other).n;
+    return `<button class="tx" data-tx="${esc(t.id)}" style="--c:${c}"><i></i><span><b>${esc(t.n||nm)}</b><small>${t.n?nm+' · ':''}${new Date(t.d+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</small></span><em class="${inc?'in':''}">${inc?'+':''}${M(+t.a,1)}</em></button>`}).join(''):'<div class="empty">Nothing logged for this month yet. Tap + Add for a purchase or paycheck.</div>'}</div>`;
+  h+=`<div class="acts"><button class="abtn pri" data-act="send">Send to Claude</button><button class="abtn" data-act="paste">Paste update from Claude</button></div>`;
+  const b=$('mBody');b.innerHTML=h;b.classList.toggle('rise',!!anim);
+  if(anim){[...b.children].forEach((c,i)=>c.style.setProperty('--i',i));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>b.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%')));
+    if(!matchMedia('(prefers-reduced-motion:reduce)').matches)b.querySelectorAll('[data-n]').forEach(e=>{const to=+e.dataset.n,fin=e.textContent,neg=fin.startsWith('−'),t0=performance.now();
+      const step=t=>{const p=Math.min(1,(t-t0)/700),v=to*(1-Math.pow(1-p,3));e.textContent=p<1?(neg?'−':'')+M(v):fin;if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)});
+  }
+}
+let tT;function toast(m){$('mToast').textContent=m;$('mToast').classList.add('show');clearTimeout(tT);tT=setTimeout(()=>$('mToast').classList.remove('show'),3800)}
+const open=h=>{$('mSheet').innerHTML='<div class="grab"></div>'+h;$('mSheet').scrollTop=0;$('mScrim').classList.add('open')};
+const close=()=>$('mScrim').classList.remove('open');
+$('mScrim').addEventListener('click',e=>{if(e.target===$('mScrim'))close()});
+
+/* ----- add / edit an entry ----- */
+function txSheet(id){
+  const old=S.tx.find(t=>t.id===id);let type=old?old.t||'exp':'exp',cat=old?old.c:'gas';
+  const draw=()=>{
+    $('eType').innerHTML=[['exp','Purchase'],['inc','Paycheck']].map(([k,n])=>`<button class="opt ${type===k?'on':''}" data-type="${k}">${n}</button>`).join('');
+    $('eCats').innerHTML=CATS.map(([k,n,c])=>`<button class="opt ${cat===k?'on':''}" data-cat="${k}" style="--c:${c}"><i></i>${n}</button>`).join('');
+    $('eCatBox').hidden=type==='inc';
+  };
+  open(`<h2>${old?'Edit entry':'Add entry'}</h2><div class="wrap" id="eType" style="margin:10px 0 12px"></div>
+    <input class="amt" id="eAmt" inputmode="decimal" placeholder="$0.00" value="${old?(+old.a).toFixed(2):''}" aria-label="Amount">
+    <div id="eCatBox"><p class="lbl">Category</p><div class="wrap" id="eCats"></div></div>
+    <div class="two" style="margin-top:16px"><label>Date<input id="eDate" type="date" value="${old?old.d:ymd(NOW())}"></label><label>Note (optional)<input id="eNote" maxlength="60" value="${old?esc(old.n||''):''}"></label></div>
+    <div class="sacts">${old?'<button class="btn del" id="eDel">Delete</button>':''}<button class="btn save" id="eSave">Save</button></div>`);
+  draw();
+  $('eType').onclick=e=>{const b=e.target.closest('[data-type]');if(b){type=b.dataset.type;draw()}};
+  $('eCats').onclick=e=>{const b=e.target.closest('[data-cat]');if(b){cat=b.dataset.cat;draw()}};
+  $('eSave').onclick=()=>{const a=parseFloat($('eAmt').value.replace(/[^0-9.]/g,''));if(!(a>0)){$('eAmt').focus();return}
+    const t={id:old?old.id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),t:type,a:Math.round(a*100)/100,c:type==='inc'?'income':cat,d:$('eDate').value||ymd(NOW()),n:$('eNote').value.trim()};
+    if(old)S.tx[S.tx.indexOf(old)]=t;else S.tx.push(t);
+    const dt=new Date(t.d+'T12:00');cur={y:dt.getFullYear(),m:dt.getMonth()};save();close();render(false);toast(old?'Saved':'Added '+M(t.a,1))};
+  if(old)$('eDel').onclick=()=>{S.tx=S.tx.filter(t=>t.id!==id);save();close();render(false);toast('Entry deleted')};
+  if(!old)setTimeout(()=>$('eAmt').focus(),320);
+}
+/* ----- plan ----- */
+function planSheet(){
+  const p=S.plan;let per=p.per;
+  const num=(id,l,v,ph='0')=>`<label>${l}<input id="${id}" inputmode="decimal" placeholder="${ph}" value="${v||''}"></label>`;
+  open(`<h2>Your plan</h2><p class="s">This is the "expected" side. Your entries are compared against it.</p>
+    <p class="lbl">Income</p><div class="two">${num('pWage','Hourly pay ($)',p.wage)}${num('pHours','Hours per paycheck',p.hours)}</div>
+    <div class="wrap" id="pPer" style="margin-top:10px"></div>
+    <div class="one" style="margin-top:10px">${num('pTax','Taken out for taxes (%)',p.tax)}</div><div class="calc" id="pIncCalc"></div>
+    <p class="lbl">Gas</p><div class="two">${num('pPrice','Costco price ($/gal)',p.price,'e.g. 3.59')}${num('pMpg','Car mpg',p.mpg)}</div>
+    <div class="two" style="margin-top:10px">${num('pWk','Miles every week',p.wk)}${num('pMo','Extra miles a month',p.mo)}</div><div class="calc" id="pGasCalc"></div>
+    <p class="lbl">Monthly budget</p><div class="two">${CATS.filter(c=>c[0]!=='gas').map(([k,n])=>num('pb_'+k,n+' ($)',p.b[k])).join('')}</div>
+    <div class="sacts"><button class="btn save" id="pSave">Save plan</button></div>`);
+  const v=id=>parseFloat($(id).value)||0;
+  const upd=()=>{$('pPer').innerHTML=[['wk','Weekly'],['bi','Every 2 weeks'],['semi','Twice a month'],['mo','Monthly']].map(([k,n])=>`<button class="opt ${per===k?'on':''}" data-per="${k}">${n}</button>`).join('');
+    $('pIncCalc').textContent='≈ '+M(v('pWage')*v('pHours')*PER[per]*(1-v('pTax')/100))+' take-home a month';
+    const mi=v('pWk')*52/12+v('pMo');$('pGasCalc').textContent=v('pPrice')&&v('pMpg')?`≈ ${Math.round(mi).toLocaleString()} miles → ${M(mi/v('pMpg')*v('pPrice'))} of gas a month`:`≈ ${Math.round(mi).toLocaleString()} miles a month. Add the gas price to get a dollar amount.`};
+  upd();$('mSheet').oninput=upd;
+  $('pPer').onclick=e=>{const b=e.target.closest('[data-per]');if(b){per=b.dataset.per;upd()}};
+  $('pSave').onclick=()=>{Object.assign(p,{wage:v('pWage'),hours:v('pHours'),per,tax:Math.min(90,v('pTax')),price:v('pPrice'),mpg:v('pMpg')||23.5,wk:v('pWk'),mo:v('pMo')});
+    CATS.forEach(([k])=>{if(k!=='gas')p.b[k]=v('pb_'+k)});save();close();render(true);toast('Plan saved')};
+}
+/* ----- send to / receive from Claude ----- */
+function summary(){
+  const d=calc(),L=[];
+  L.push(`PLANNER MONEY UPDATE · ${new Date(cur.y,cur.m,1).toLocaleDateString('en-US',{month:'long',year:'numeric'})}${d.isCur?` (day ${d.day} of ${d.days})`:''}`,'');
+  L.push('PLAN (monthly)',`Take-home income: ${M(d.pInc)}  [${M(S.plan.wage,1)}/hr × ${S.plan.hours} h, ${S.plan.per}, ${S.plan.tax}% tax]`);
+  CATS.forEach(([k,n])=>L.push(`${n}: ${M(budget(k))}`));
+  L.push(`Total budget: ${M(d.pSp)} · planned savings: ${M(d.planSave)}`,`Gas inputs: ${M(S.plan.price,1)}/gal, ${S.plan.mpg} mpg, ${Math.round(gasMiles())} mi/month`,'');
+  L.push('ACTUAL SO FAR',`Income: ${M(d.income,1)} · Spent: ${M(d.spent,1)}`);
+  CATS.forEach(([k,n])=>{if(d.by[k])L.push(`${n}: ${M(d.by[k],1)} of ${M(budget(k))}`)});
+  if(d.isCur)L.push(`Projected month-end spend: ${M(d.proj)} · projected savings: ${M(d.projSave)}`);
+  L.push('','ENTRIES');
+  d.tx.slice().reverse().forEach(t=>L.push(`${t.d}  ${t.t==='inc'?'PAYCHECK':(CAT[t.c]||CAT.other).n}  ${M(+t.a,1)}${t.n?'  '+t.n:''}`));
+  if(!d.tx.length)L.push('(none logged)');
+  L.push('','Please compare my actual spending to my plan, tell me where I am off, and give me a "Paste update from Claude" code if anything should change.');
+  return L.join('\n');
+}
+async function send(){
+  const text=summary();let ok=false;
+  if(navigator.share){try{await navigator.share({text});ok=true}catch(e){if(e&&e.name==='AbortError')return}}
+  if(!ok){try{await navigator.clipboard.writeText(text);ok=true;toast('Copied. Paste it into your chat with Claude')}catch(e){prompt('Copy this and paste it into your chat with Claude:',text);ok=true}}
+  S.lastSent=Date.now();save();render(false);
+}
+async function paste(){
+  let raw='';try{raw=await navigator.clipboard.readText()}catch(e){}
+  if(!raw||raw.indexOf('{')<0)raw=prompt('Paste the update code Claude gave you:')||'';
+  if(!raw.trim())return;
+  let g;try{g=JSON.parse(raw.slice(raw.indexOf('{'),raw.lastIndexOf('}')+1))}catch(e){toast('That didn’t look like an update code');return}
+  let added=0;const have=new Set(S.tx.map(t=>t.id));
+  (Array.isArray(g.tx)?g.tx:[]).forEach(t=>{if(!t||!(+t.a>0)||!/^\d{4}-\d{2}-\d{2}$/.test(t.d||''))return;
+    const inc=t.t==='inc',c=inc?'income':CAT[t.c]?t.c:'other',n=String(t.n||'').slice(0,60),id=String(t.id||'i'+t.d+(+t.a)+c+n);
+    if(have.has(id))return;have.add(id);S.tx.push({id,t:inc?'inc':'exp',a:Math.round(+t.a*100)/100,c,d:t.d,n});added++});
+  let plan=false;
+  if(+g.gasPrice>0){S.plan.price=+g.gasPrice;plan=true}
+  if(g.plan&&typeof g.plan==='object'){['wage','hours','tax','price','mpg','wk','mo'].forEach(k=>{if(+g.plan[k]>=0&&g.plan[k]!==''&&g.plan[k]!=null){S.plan[k]=+g.plan[k];plan=true}});
+    if(PER[g.plan.per]){S.plan.per=g.plan.per;plan=true}
+    if(g.plan.b)CATS.forEach(([k])=>{if(k!=='gas'&&+g.plan.b[k]>=0&&g.plan.b[k]!=null){S.plan.b[k]=+g.plan.b[k];plan=true}})}
+  if(!added&&!plan){toast('Nothing new in that update');return}
+  save();render(true);toast([added?`Added ${added} ${added===1?'entry':'entries'}`:'',plan?'plan updated':''].filter(Boolean).join(' · '));
+}
+$('mBody').addEventListener('click',e=>{
+  const f=e.target.closest('[data-foc]');if(f){focus=focus===f.dataset.foc?null:f.dataset.foc;render(false);return}
+  const t=e.target.closest('[data-tx]');if(t){txSheet(t.dataset.tx);return}
+  const a=e.target.closest('[data-act]');if(!a)return;
+  ({plan:planSheet,send,paste})[a.dataset.act]();
+});
+$('mAdd').onclick=()=>txSheet(null);
+$('mPlanBtn').onclick=planSheet;
+$('mPrev').onclick=()=>{cur=cur.m?{y:cur.y,m:cur.m-1}:{y:cur.y-1,m:11};focus=null;render(true)};
+$('mNext').onclick=()=>{cur=cur.m<11?{y:cur.y,m:cur.m+1}:{y:cur.y+1,m:0};focus=null;render(true)};
+addEventListener('tab-show',e=>{if(e.detail==='money')render(true)});
+render(false);
+})();
+</script>
+<script>
 /* ===== Tab bar ===== */
 (()=>{
-  const KEY='colby.tab', scroll={cal:0,todo:0};
+  const KEY='colby.tab',T={cal:'calApp',todo:'todoApp',money:'moneyApp'},scroll={cal:0,todo:0,money:0};
   let cur=null;
   const badge=()=>{
     try{const s=JSON.parse(localStorage.getItem('colby.todo.v1')||'null'),d=new Date(),td=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -1022,28 +1339,23 @@ $('impBtn').onclick=async()=>{
       document.getElementById('todoBadge').textContent=n?String(n):'';}catch(e){}
   };
   function show(t,anim){
-    if(t!=='cal'&&t!=='todo')t='cal';
+    if(!T[t])t='cal';
     if(cur===t)return;
     if(cur)scroll[cur]=window.scrollY;
     cur=t;
-    document.getElementById('calApp').hidden=t!=='cal';
-    document.getElementById('todoApp').hidden=t!=='todo';
+    for(const k in T){document.getElementById(T[k]).hidden=k!==t;document.getElementById('tab-'+k).setAttribute('aria-selected',k===t)}
     document.body.className='on-'+t;
-    document.getElementById('tab-cal').setAttribute('aria-selected',t==='cal');
-    document.getElementById('tab-todo').setAttribute('aria-selected',t==='todo');
-    const el=document.getElementById(t==='cal'?'calApp':'todoApp');
+    const el=document.getElementById(T[t]);
     if(anim){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter')}
     window.scrollTo(0,scroll[t]);
     try{localStorage.setItem(KEY,t)}catch(e){}
-    badge();
+    badge();dispatchEvent(new CustomEvent('tab-show',{detail:t}));
   }
-  document.getElementById('tab-cal').onclick=()=>show('cal',true);
-  document.getElementById('tab-todo').onclick=()=>show('todo',true);
+  for(const k in T)document.getElementById('tab-'+k).onclick=()=>show(k,true);
   const h=location.hash.replace('#','');
-  let start=h==='todo'||h==='calendar'?(h==='todo'?'todo':'cal'):null;
+  let start=h==='calendar'?'cal':T[h]?h:null;
   if(!start)try{start=localStorage.getItem(KEY)}catch(e){}
   show(start||'cal',false);
-  // keep the badge current as tasks change
   addEventListener('todo-change',badge);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)badge()});
 })();
