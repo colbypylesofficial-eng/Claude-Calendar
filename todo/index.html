@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#000; --card:#0d0d11; --card-done:#08080a; --line:#1f1f27; --fg:#f5f5f7; --muted:#9b9ba8; --faint:#5d5d6a;
+  --bg:#000; --card:rgb(14 14 19/.72); --card-done:rgb(8 8 10/.62); --line:#1f1f27; --fg:#f5f5f7; --muted:#9b9ba8; --faint:#5d5d6a;
   --hot:#ff5c6c; --good:#22c55e;
   --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,sans-serif;
   --c:#a855f7;
@@ -23,11 +23,22 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--fg)}
 body{font-family:var(--body);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-   radial-gradient(70% 38% at 0% 0%,rgb(147 51 234/.30),transparent 70%),
-   radial-gradient(60% 34% at 100% 4%,rgb(14 165 233/.22),transparent 70%),
-   radial-gradient(60% 30% at 50% 100%,rgb(236 72 153/.10),transparent 70%)}
+/* animated background: glowing orbs revolving on slow orbits, drifting toward your finger */
+.bg{position:fixed;inset:-25%;z-index:0;pointer-events:none;overflow:hidden;
+  transform:translate3d(var(--px,0px),var(--py,0px),0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.orbit{position:absolute;left:var(--x);top:var(--y);width:0;height:0;animation:spin var(--t) linear infinite;will-change:transform}
+.orbit.rev{animation-direction:reverse}
+.orb{position:absolute;width:var(--s);height:var(--s);left:calc(var(--r) - var(--s)/2);top:calc(var(--s)/-2);border-radius:50%;
+  background:radial-gradient(circle closest-side,var(--col),transparent);animation:breathe var(--b,10s) ease-in-out infinite alternate}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{from{transform:scale(.85);opacity:.75}to{transform:scale(1.15);opacity:1}}
+.stars{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 9%,#fff7,transparent),radial-gradient(1.5px 1.5px at 38% 42%,#fff6,transparent),
+   radial-gradient(1px 1px at 86% 55%,#fff7,transparent),radial-gradient(1px 1px at 22% 74%,#fff5,transparent),radial-gradient(1.5px 1.5px at 61% 83%,#fff6,transparent),
+   radial-gradient(1px 1px at 48% 12%,#fff5,transparent),radial-gradient(1px 1px at 93% 31%,#fff6,transparent),radial-gradient(1px 1px at 6% 47%,#fff5,transparent);
+  animation:twinkle 7s ease-in-out infinite alternate,spin 240s linear infinite;transform-origin:50% 40%}
+@keyframes twinkle{from{opacity:.25}to{opacity:.6}}
+@media (prefers-reduced-motion:reduce){.orbit,.orb,.stars{animation:none}.bg{transition:none}}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 main{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 16px 200px}
 
@@ -76,7 +87,7 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
   touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:pointer;
   transition:transform .3s cubic-bezier(.2,.8,.2,1),background .25s,border-color .25s}
 .item::before{content:"";position:absolute;left:0;top:13px;bottom:13px;width:3px;border-radius:0 3px 3px 0;background:var(--c);box-shadow:0 0 12px var(--c);transition:opacity .3s}
-.item:active{background:#121218}
+.item:active{background:rgb(24 24 32/.8)}
 .chk{flex:none;width:24px;height:24px;margin-top:-1px;border-radius:50%;border:2px solid var(--c);display:grid;place-items:center;transition:background .25s,box-shadow .25s}
 .chk svg{width:14px;height:14px;stroke:#000;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:22;stroke-dashoffset:22;transition:stroke-dashoffset .3s .08s}
 .body{min-width:0;flex:1}
@@ -159,6 +170,13 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
 <body>
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a855f7"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs></svg>
 
+<div class="bg" id="bg" aria-hidden="true">
+  <div class="stars"></div>
+  <div class="orbit" style="--x:22%;--y:18%;--t:36s"><div class="orb" style="--s:75vmax;--r:16vmax;--col:rgb(147 51 234/.55);--b:11s"></div></div>
+  <div class="orbit rev" style="--x:78%;--y:26%;--t:44s"><div class="orb" style="--s:62vmax;--r:20vmax;--col:rgb(14 165 233/.42);--b:9s"></div></div>
+  <div class="orbit" style="--x:50%;--y:82%;--t:52s"><div class="orb" style="--s:60vmax;--r:18vmax;--col:rgb(236 72 153/.32);--b:13s"></div></div>
+  <div class="orbit rev" style="--x:35%;--y:58%;--t:64s"><div class="orb" style="--s:48vmax;--r:24vmax;--col:rgb(34 197 94/.2);--b:12s"></div></div>
+</div>
 <main>
   <div class="hd">
     <div>
@@ -392,6 +410,13 @@ function clearDone(){
   S.tasks=S.tasks.filter(t=>!gone(t)); save(); render();
   toast(`Cleared ${n} done`,()=>{S.tasks=before;save();render()});
 }
+// background drifts gently toward your finger / cursor
+(()=>{const bg=$('bg');let raf=0;
+  addEventListener('pointermove',e=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;
+    bg.style.setProperty('--px',((e.clientX/innerWidth-.5)*50).toFixed(1)+'px');
+    bg.style.setProperty('--py',((e.clientY/innerHeight-.5)*50).toFixed(1)+'px')})},{passive:true});
+  addEventListener('pointerdown',e=>{bg.style.setProperty('--px',((e.clientX/innerWidth-.5)*50).toFixed(1)+'px');bg.style.setProperty('--py',((e.clientY/innerHeight-.5)*50).toFixed(1)+'px')},{passive:true});
+})();
 let tT=null,tUndo=null;
 function toast(msg,undo){
   $('tmsg').textContent=msg; tUndo=undo; $('toast').classList.add('show');
