@@ -138,6 +138,17 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
 .btn.del{flex:none;padding:14px 18px;color:#ff7b88;background:rgb(244 63 94/.12);border:1px solid rgb(244 63 94/.3)}
 .btn.save{color:#fff;background:linear-gradient(135deg,#a855f7,#6366f1 50%,#38bdf8)}
 
+/* repeating */
+.rep{display:flex;align-items:center;gap:4px;color:#c4b5fd;font-weight:500}
+.streak{color:#fdba74;font-weight:700}
+.gh.daily{color:#c4b5fd}
+.gh svg{width:13px;height:13px}
+.row.off{opacity:.42}
+.row.off .chk{border-style:dashed}
+.opt.rp{--c:#a78bfa}
+.opt.rp svg{flex:none}
+.days{margin-top:8px}
+.opt.day{width:38px;height:38px;padding:0;justify-content:center;--c:#a78bfa}
 /* toast */
 .toast{position:fixed;left:50%;bottom:calc(150px + env(safe-area-inset-bottom));z-index:30;display:flex;align-items:center;gap:16px;padding:11px 12px 11px 18px;border-radius:14px;background:#1a1a22;border:1px solid #2c2c37;box-shadow:0 10px 30px rgb(0 0 0/.6);font-size:14px;
   transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.25s}
@@ -162,7 +173,7 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
   </div>
   <nav class="filters" id="filters"></nav>
   <section id="list"></section>
-  <p class="hint">Tap to check off · Swipe right to finish · Swipe left to delete · Hold to edit</p>
+  <p class="hint">Tap to check off · Swipe right to finish · Swipe left to delete<br>Hold a task to edit it or make it repeat · Daily tasks reset each morning</p>
 </main>
 
 <div class="dock" id="dock"><div class="dock-in">
@@ -182,8 +193,11 @@ h1{margin:0;font-family:var(--display);font-weight:800;font-size:46px;line-heigh
     <textarea id="etxt" maxlength="200"></textarea>
     <div class="lbl">List</div>
     <div class="wrap" id="ecats"></div>
-    <div class="lbl">Due</div>
-    <div class="wrap" id="edue"></div>
+    <div class="lbl">Repeat</div>
+    <div class="wrap" id="erep"></div>
+    <div class="wrap days" id="edays"></div>
+    <div id="eduebox"><div class="lbl">Due</div>
+    <div class="wrap" id="edue"></div></div>
     <div class="acts">
       <button class="btn del" id="edel">Delete</button>
       <button class="btn save" id="esave">Save</button>
@@ -229,20 +243,47 @@ function fmtDue(s){
   return d.toLocaleDateString(undefined,o);
 }
 
+/* ---------- repeating tasks ---------- */
+const isRec=t=>Array.isArray(t.r);
+const dueToday=t=>isRec(t)&&t.r.includes(new Date().getDay());
+const isDone=t=>isRec(t)?(t.hist||[]).includes(today()):!!t.done;
+const DAYS=['Su','Mo','Tu','We','Th','Fr','Sa'];
+function repLabel(r){
+  const k=r.slice().sort().join();
+  if(r.length===7)return'Every day'; if(k==='1,2,3,4,5')return'Weekdays'; if(k==='0,6')return'Weekends';
+  return r.slice().sort().map(d=>DAYS[d]).join(' ');
+}
+function streak(t){
+  const h=new Set(t.hist||[]), d=new Date(); let n=0;
+  if(!h.has(ymd(d)))d.setDate(d.getDate()-1);
+  for(let i=0;i<730;i++){
+    if(t.r.includes(d.getDay())){if(h.has(ymd(d)))n++;else break}
+    d.setDate(d.getDate()-1);
+  }
+  return n;
+}
+const REP='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg>';
+
 /* ---------- render ---------- */
-function rowHTML(t){
-  const c=CAT[t.c]||CAT.personal, td=today();
-  let due='';
-  if(t.d){const cls=!t.done&&t.d<td?'late':(!t.done&&t.d===td?'today':'');due=`<span class="due ${cls}">${CAL}${fmtDue(t.d)}</span>`}
-  return `<div class="row${t.done?' is-done':''}${t.id===newId?' new':''}" data-id="${t.id}">
-    <div class="under"><span class="u-l">${CHK}${t.done?'Undo':'Done'}</span><span class="u-r">Delete${TRASH}</span></div>
+function rowHTML(t,off){
+  const c=CAT[t.c]||CAT.personal, td=today(), done=!off&&isDone(t);
+  let meta=`<span class="tag">${c.n}</span>`;
+  if(isRec(t)){
+    meta+=`<span class="rep">${REP}${repLabel(t.r)}</span>`;
+    const s=streak(t); if(s>=2)meta+=`<span class="streak">🔥 ${s}</span>`;
+  }else if(t.d){
+    const cls=!done&&t.d<td?'late':(!done&&t.d===td?'today':'');
+    meta+=`<span class="due ${cls}">${CAL}${fmtDue(t.d)}</span>`;
+  }
+  return `<div class="row${done?' is-done':''}${off?' off':''}${t.id===newId?' new':''}" data-id="${t.id}">
+    <div class="under"><span class="u-l">${CHK}${done?'Undo':'Done'}</span><span class="u-r">Delete${TRASH}</span></div>
     <div class="item" style="--c:${c.c}"><span class="chk">${CHK}</span>
-      <div class="body"><span class="txt">${esc(t.t)}</span><div class="meta"><span class="tag">${c.n}</span>${due}</div></div>
+      <div class="body"><span class="txt">${esc(t.t)}</span><div class="meta">${meta}</div></div>
     </div></div>`;
 }
-function group(title,arr,cls='',extra=''){
+function group(title,arr,cls='',extra='',cnt=null,off=false){
   if(!arr.length)return'';
-  return `<div class="grp"><div class="gh ${cls}">${title}<span class="cnt">${arr.length}</span>${extra}</div>${arr.map(rowHTML).join('')}</div>`;
+  return `<div class="grp"><div class="gh ${cls}">${title}<span class="cnt">${cnt??arr.length}</span>${extra}</div>${arr.map(t=>rowHTML(t,off)).join('')}</div>`;
 }
 let pendingRender=false;
 function render(){
@@ -250,58 +291,70 @@ function render(){
   pendingRender=false;
   const td=today(), f=S.filter;
   const all=S.tasks.filter(t=>f==='all'||t.c===f);
+  const rec=all.filter(isRec).sort((a,b)=>a.at-b.at);
+  const recToday=rec.filter(dueToday), recOther=rec.filter(t=>!dueToday(t));
+  const plain=all.filter(t=>!isRec(t));
   const key=t=>t.d||'9999-99-99';
-  const open=all.filter(t=>!t.done).sort((a,b)=>key(a)<key(b)?-1:key(a)>key(b)?1:a.at-b.at);
-  const done=all.filter(t=>t.done).sort((a,b)=>(b.doneAt||0)-(a.doneAt||0));
+  const open=plain.filter(t=>!t.done).sort((a,b)=>key(a)<key(b)?-1:key(a)>key(b)?1:a.at-b.at);
+  const done=plain.filter(t=>t.done).sort((a,b)=>(b.doneAt||0)-(a.doneAt||0));
+  const recDone=recToday.filter(isDone).length;
   let h='';
   if(!all.length){
     const nm=f==='all'?'':` in ${CAT[f].n}`;
     h=`<div class="empty"><div class="orb"></div><div class="big">Nothing here${nm}</div>Type below and hit + to add your first task.</div>`;
   }else{
+    h+=group(`${REP} Daily`,recToday,'daily','',`${recDone}/${recToday.length}`);
     h+=group('Overdue',open.filter(t=>t.d&&t.d<td),'hot');
     h+=group('Today',open.filter(t=>t.d===td));
     h+=group('Upcoming',open.filter(t=>t.d&&t.d>td));
     h+=group(open.some(t=>t.d)?'Anytime':'To do',open.filter(t=>!t.d));
-    if(!open.length)h+=`<div class="empty" style="padding-top:30px"><div class="big">All clear ✨</div>Everything${f==='all'?'':' in '+CAT[f].n} is done.</div>`;
+    if(!open.length&&recDone===recToday.length&&(plain.length||recToday.length))
+      h+=`<div class="empty" style="padding-top:30px"><div class="big">All clear ✨</div>Everything${f==='all'?'':' in '+CAT[f].n} is done for today.</div>`;
     h+=group('Done',done,'',`<button class="clear" id="clear">Clear</button>`);
+    h+=group('Repeats · not today',recOther,'','',null,true);
   }
   $('list').innerHTML=h;
   newId=null;
   const c=$('clear'); if(c)c.onclick=clearDone;
-  renderHeader(all,open,done);
+  renderHeader(plain.length+recToday.length,done.length+recDone,open.length+recToday.length-recDone);
   renderFilters();
 }
-function renderHeader(all,open,done){
-  const n=all.length, pct=n?Math.round(done.length/n*100):0;
+function renderHeader(total,doneN,left){
+  const pct=total?Math.round(doneN/total*100):0;
   $('ringv').style.strokeDashoffset=157.08*(1-pct/100);
   $('pct').textContent=pct+'%';
-  const td=today(), doneToday=S.tasks.filter(t=>t.done&&t.doneAt&&ymd(new Date(t.doneAt))===td).length;
-  $('sub').innerHTML=n?`<b>${open.length}</b> left · <b>${doneToday}</b> done today`:'Let’s get things done';
+  const td=today(), doneToday=S.tasks.filter(t=>isRec(t)?(t.hist||[]).includes(td):(t.done&&t.doneAt&&ymd(new Date(t.doneAt))===td)).length;
+  $('sub').innerHTML=total?`<b>${left}</b> left · <b>${doneToday}</b> done today`:'Let’s get things done';
 }
 function renderFilters(){
-  const cnt=k=>S.tasks.filter(t=>!t.done&&(k==='all'||t.c===k)).length;
+  const cnt=k=>S.tasks.filter(t=>(k==='all'||t.c===k)&&(isRec(t)?dueToday(t)&&!isDone(t):!t.done)).length;
   let h=`<button class="chip${S.filter==='all'?' on':''}" data-f="all" style="--c:#e5e5ea">All <span class="n">${cnt('all')}</span></button>`;
   h+=CATS.map(c=>`<button class="chip${S.filter===c.k?' on':''}" data-f="${c.k}" style="--c:${c.c}"><span class="dot"></span>${c.n} <span class="n">${cnt(c.k)}</span></button>`).join('');
   $('filters').innerHTML=h;
 }
+let addRep=null;   // repeat days for new tasks (not saved)
 function renderOpts(){
   const cat=CAT[S.cat];
   document.documentElement.style.setProperty('--c',cat.c);
   let h=CATS.map(c=>`<button type="button" class="opt${S.cat===c.k?' on':''}" data-cat="${c.k}" style="--c:${c.c}"><span class="dot"></span>${c.n}</button>`).join('');
   h+='<span class="sep"></span>';
+  h+=`<button type="button" class="opt rp${addRep?' on':''}" data-rep="1">${REP} Daily</button>`;
   const isPick=addDue&&addDue!==today()&&addDue!==plus(1);
-  h+=`<button type="button" class="opt dt${!addDue?' on':''}" data-due="">No date</button>`;
+  h+=`<button type="button" class="opt dt${!addDue&&!addRep?' on':''}" data-due="">No date</button>`;
   h+=`<button type="button" class="opt dt${addDue===today()?' on':''}" data-due="${today()}">Today</button>`;
   h+=`<button type="button" class="opt dt${addDue===plus(1)?' on':''}" data-due="${plus(1)}">Tomorrow</button>`;
   h+=`<label class="opt dt${isPick?' on':''}">${CAL} ${isPick?fmtDue(addDue):'Pick date'}<input type="date" id="pick" value="${addDue||''}"></label>`;
   $('opts').innerHTML=h;
-  $('pick').onchange=e=>{addDue=e.target.value||null;renderOpts()};
+  $('pick').onchange=e=>{addDue=e.target.value||null;if(addDue)addRep=null;renderOpts()};
+  $('inp').placeholder=addRep?'Add a daily task…':'Add a task…';
 }
 
 /* ---------- actions ---------- */
 function addTask(){
   const v=$('inp').value.trim(); if(!v)return;
-  const t={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),t:v,c:S.cat,d:addDue,done:false,at:Date.now()};
+  const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  const t=addRep?{id,t:v,c:S.cat,r:addRep.slice(),hist:[],at:Date.now()}
+                :{id,t:v,c:S.cat,d:addDue,done:false,at:Date.now()};
   S.tasks.push(t);
   if(S.filter!=='all'&&S.filter!==S.cat)S.filter='all';
   newId=t.id; save(); render();
@@ -311,26 +364,33 @@ function addTask(){
 let rTimer=null;
 function toggle(id){
   const t=S.tasks.find(x=>x.id===id); if(!t)return;
-  t.done=!t.done; t.doneAt=t.done?Date.now():null; save();
+  let now;
+  if(isRec(t)){
+    const td=today(), was=isDone(t);
+    t.hist=(t.hist||[]).filter(d=>d!==td);
+    if(!was)t.hist.push(td);
+    now=!was;
+    if(t.hist.length>400)t.hist=t.hist.slice(-400);
+  }else{t.done=!t.done;t.doneAt=t.done?Date.now():null;now=t.done}
+  save();
   const row=document.querySelector(`.row[data-id="${id}"]`);
-  if(row){row.classList.toggle('is-done',t.done);const ul=row.querySelector('.u-l');if(ul)ul.innerHTML=CHK+(t.done?'Undo':'Done')}
+  if(row){row.classList.toggle('is-done',now);const ul=row.querySelector('.u-l');if(ul)ul.innerHTML=CHK+(now?'Undo':'Done')}
   if(navigator.vibrate)navigator.vibrate(12);
-  clearTimeout(rTimer); rTimer=setTimeout(render,750);   // let the strike-through play, then move it to Done
+  clearTimeout(rTimer); rTimer=setTimeout(render,750);   // let the strike-through play, then re-sort
 }
 function removeTask(id,row){
   const i=S.tasks.findIndex(x=>x.id===id); if(i<0)return;
   const t=S.tasks[i];
-  const finish=()=>{S.tasks.splice(S.tasks.indexOf(t),1);save();render();toast('Task deleted',()=>{S.tasks.splice(Math.min(i,S.tasks.length),0,t);save();render()})};
+  const finish=()=>{S.tasks.splice(S.tasks.indexOf(t),1);save();render();toast(isRec(t)?'Repeating task deleted':'Task deleted',()=>{S.tasks.splice(Math.min(i,S.tasks.length),0,t);save();render()})};
   if(row){row.style.height=row.offsetHeight+'px';row.offsetHeight;row.style.height='0px';row.style.marginBottom='0px';row.style.opacity='0';setTimeout(finish,250)}
   else finish();
 }
 function clearDone(){
-  const keep=S.tasks.filter(t=>!(t.done&&(S.filter==='all'||t.c===S.filter)));
-  const gone=S.tasks.filter(t=>!keep.includes(t));
-  if(!gone.length)return;
+  const gone=t=>!isRec(t)&&t.done&&(S.filter==='all'||t.c===S.filter);
+  const n=S.tasks.filter(gone).length; if(!n)return;
   const before=S.tasks.slice();
-  S.tasks=keep; save(); render();
-  toast(`Cleared ${gone.length} done`,()=>{S.tasks=before;save();render()});
+  S.tasks=S.tasks.filter(t=>!gone(t)); save(); render();
+  toast(`Cleared ${n} done`,()=>{S.tasks=before;save();render()});
 }
 let tT=null,tUndo=null;
 function toast(msg,undo){
@@ -374,12 +434,12 @@ function endGesture(e,cancel){
   clearTimeout(g.hold); gest=null;
   if(g.mode==='swipe'){
     g.item.style.transition='';
-    if(!cancel&&g.dx>g.th){g.item.style.transform='';toggle(g.id)}
+    if(!cancel&&g.dx>g.th){g.item.style.transform='';if(!g.row.classList.contains('off'))toggle(g.id)}
     else if(!cancel&&g.dx<-g.th){g.item.style.transform='translateX(-110%)';removeTask(g.id,g.row)}
     else g.item.style.transform='';
     setTimeout(()=>{g.row.classList.remove('swiping','go-r','go-l','armed')},300);
     if(pendingRender)setTimeout(render,320);
-  }else if(!g.mode&&!cancel){toggle(g.id)}
+  }else if(!g.mode&&!cancel){if(g.row.classList.contains('off'))openEdit(g.id);else toggle(g.id)}
 }
 list.addEventListener('pointerup',e=>endGesture(e,false));
 list.addEventListener('pointercancel',e=>endGesture(e,true));
@@ -390,7 +450,8 @@ $('form').addEventListener('submit',e=>{e.preventDefault();addTask();$('inp').fo
 $('opts').addEventListener('click',e=>{
   const b=e.target.closest('button'); if(!b)return;
   if(b.dataset.cat){S.cat=b.dataset.cat;save()}
-  if('due' in b.dataset)addDue=b.dataset.due||null;
+  if('due' in b.dataset){addDue=b.dataset.due||null;addRep=null}
+  if(b.dataset.rep){addRep=addRep?null:[0,1,2,3,4,5,6];addDue=null}
   renderOpts();
 });
 $('filters').addEventListener('click',e=>{
@@ -406,11 +467,11 @@ if(window.visualViewport){
 }
 
 /* ---------- edit sheet ---------- */
-let editing=null,eCat=null,eDue=null;
+let editing=null,eCat=null,eDue=null,eRep=null;
 function openEdit(id){
   const t=S.tasks.find(x=>x.id===id); if(!t)return;
   if(navigator.vibrate)navigator.vibrate(15);
-  editing=t; eCat=t.c; eDue=t.d;
+  editing=t; eCat=t.c; eDue=t.d||null; eRep=isRec(t)?t.r.slice():null;
   $('etxt').value=t.t; drawEdit();
   $('scrim').classList.add('open');
 }
@@ -420,14 +481,27 @@ function drawEdit(){
   const isPick=eDue&&eDue!==today()&&eDue!==plus(1);
   $('edue').innerHTML=`<button class="opt dt${!eDue?' on':''}" data-due="">No date</button><button class="opt dt${eDue===today()?' on':''}" data-due="${today()}">Today</button><button class="opt dt${eDue===plus(1)?' on':''}" data-due="${plus(1)}">Tomorrow</button><label class="opt dt${isPick?' on':''}">${CAL} ${isPick?fmtDue(eDue):'Pick date'}<input type="date" id="epick" value="${eDue||''}"></label>`;
   $('epick').onchange=e=>{eDue=e.target.value||null;drawEdit()};
+  const k=eRep?eRep.slice().sort().join():'';
+  $('erep').innerHTML=[['off','Off',!eRep],['all','Every day',k==='0,1,2,3,4,5,6'],['wk','Weekdays',k==='1,2,3,4,5']]
+    .map(([v,n,on])=>`<button class="opt rp${on?' on':''}" data-r="${v}">${v==='off'?'':REP+' '}${n}</button>`).join('');
+  $('edays').innerHTML=eRep?DAYS.map((d,i)=>`<button class="opt day${eRep.includes(i)?' on':''}" data-d="${i}">${d}</button>`).join(''):'';
+  $('eduebox').hidden=!!eRep;
 }
+$('erep').onclick=e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.r;
+  eRep=v==='off'?null:v==='all'?[0,1,2,3,4,5,6]:[1,2,3,4,5];drawEdit()};
+$('edays').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=+b.dataset.d;
+  eRep=eRep.includes(d)?eRep.filter(x=>x!==d):[...eRep,d].sort();if(!eRep.length)eRep=null;drawEdit()};
 $('ecats').onclick=e=>{const b=e.target.closest('button');if(b){eCat=b.dataset.cat;drawEdit()}};
 $('edue').onclick=e=>{const b=e.target.closest('button');if(b){eDue=b.dataset.due||null;drawEdit()}};
 function closeEdit(){$('scrim').classList.remove('open');editing=null}
 $('scrim').addEventListener('click',e=>{if(e.target===$('scrim'))closeEdit()});
 $('esave').onclick=()=>{
   if(!editing)return; const v=$('etxt').value.trim();
-  if(v){editing.t=v;editing.c=eCat;editing.d=eDue;save();render()}
+  if(v){
+    const t=editing; t.t=v; t.c=eCat;
+    if(eRep){t.r=eRep.slice();t.hist=t.hist||[];if(t.done&&!t.hist.includes(today()))t.hist.push(today());delete t.d;delete t.done;delete t.doneAt}
+    else{if(isRec(t)){t.done=t.hist.includes(today());t.doneAt=t.done?Date.now():null;delete t.r;delete t.hist}t.d=eDue}
+    save();render()}
   closeEdit();
 };
 $('edel').onclick=()=>{if(!editing)return;const id=editing.id;closeEdit();removeTask(id,null)};
